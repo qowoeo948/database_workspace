@@ -1,0 +1,56 @@
+
+SQL*Loader: Release 11.2.0.2.0 - Production on 수 9월 9 17:20:32 2020
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   animal.ctl
+Data File:      animal.csv
+  Bad File:     animal.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     64 rows, maximum of 256000 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table ANIMAL, loaded from every logical record.
+Insert option in effect for this table: INSERT
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+CODE                                FIRST     *   ,       CHARACTER            
+CATEGORY                             NEXT     *   ,       CHARACTER            
+NAME                                 NEXT     *   ,       CHARACTER            
+LOCATION                             NEXT     *   ,       CHARACTER            
+
+Record 1: Rejected - Error on table ANIMAL, column CODE.
+ORA-01722: invalid number
+
+Record 16: Rejected - Error on table ANIMAL, column NAME.
+ORA-12899: value too large for column "USER0827"."ANIMAL"."NAME" (actual: 12, maximum: 10)
+
+
+Table ANIMAL:
+  20 Rows successfully loaded.
+  2 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                  66048 bytes(64 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          0
+Total logical records read:            22
+Total logical records rejected:         2
+Total logical records discarded:        0
+
+Run began on 수 9월  09 17:20:32 2020
+Run ended on 수 9월  09 17:20:32 2020
+
+Elapsed time was:     00:00:00.16
+CPU time was:         00:00:00.09

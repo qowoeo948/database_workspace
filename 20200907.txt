@@ -1,0 +1,185 @@
+sqlplus sys/1234 as sysdba
+
+SQL> --시스템 계정으로 로그인 전환하기
+SQL> conn system/1234
+Connected.
+SQL> --확인
+SQL> show user
+USER is "SYSTEM"
+SQL> --기존에 없던 것을 새로 생성하는 것은 DDL -create
+SQL> create tablespace dk0907
+  2  datafile 'C:\oraclexe\app\oracle\oradata\XE\dk0907.dbf'
+  3  size 2M;
+
+Tablespace created.
+
+SQL> --유저 생성 DDL -create
+SQL> create user user0907
+  2  identified by 1234
+  3  default tablespace dk0907
+  4  quota unlimited on dk0907;
+create user user0907
+            *
+ERROR at line 1:
+ORA-01920: user name 'USER0907' conflicts with another user or role name 
+
+
+SQL> create user user0618
+  2  identified by 1234
+  3  defalut tablespace dk0907
+  4  quota unlimited on dk0907;
+defalut tablespace dk0907
+*
+ERROR at line 3:
+ORA-00922: missing or invalid option 
+
+
+SQL> create user user0618
+  2  idetified by 1234
+  3  default tablespace dk0907
+  4  quota unlimited on dk0907;
+idetified by 1234
+*
+ERROR at line 2:
+ORA-00922: missing or invalid option 
+
+
+SQL> create user user0618
+  2  identified by 1234
+  3  default tablespace dk0907
+  4  quota unlimited on dk0907;
+
+User created.
+
+SQL> --접속권한 DCL grant
+SQL> grant create session, create table to user0618;
+
+Grant succeeded.
+
+SQL> --유저접속
+SQL> --테이블만들기
+SQL> create table member(
+  2  name varchar(20),
+  3  age number,
+  4  birth date
+  5  );
+
+Table created.
+
+SQL> show user;
+USER is "SYSTEM"
+SQL> --테이블 지우기
+SQL> drop table member;
+
+Table dropped.
+
+SQL> --유저접속
+SQL> conn user0618;
+Connected.
+SQL> show user;
+USER is "USER0618"
+SQL> create table member(
+  2  name varchar(20),
+  3  age number,
+  4  birth date
+  5  );
+
+Table created.
+
+SQL> --데이터정보 넣기
+SQL> --DML(조작어) insert, update,delete
+SQL> insert into member(name,age,birth)
+  2  values('노홍철',30,'1989-09-01');
+
+1 row created.
+
+SQL> insert into member(name,age,birth)
+  2  values('박나래',27,'1986-07-15');
+
+1 row created.
+
+SQL> --테이블에 입력된 모든 레코드 출력하기
+SQL> --그전에 트랜잭션 완료 DML작업을 확정이어줘야 돼
+SQL> commit;
+
+Commit complete.
+
+SQL> --member테이블 레코드 출력
+SQL> select name,age,birth from member;
+
+NAME                                            AGE BIRTH                       
+---------------------------------------- ---------- --------                    
+노홍철                                           30 89/09/01                    
+박나래                                           27 86/07/15                    
+
+SQL> --이름이 박나래인 사람만 출력
+SQL> select * from member
+  2  where name='박나래';
+
+NAME                                            AGE BIRTH                       
+---------------------------------------- ---------- --------                    
+박나래                                           27 86/07/15                    
+
+SQL> --생년월일이 1989 09 01인사람의 이름과 생년월일 출력
+SQL> select name,birth from member
+  2  where birth='1989-09-01';
+
+NAME                                     BIRTH                                  
+---------------------------------------- --------                               
+노홍철                                   89/09/01                               
+
+SQL> --나이가 27세인 사람의 이름과 나이 출력
+SQL> select name,age from member
+  2  where age=27;
+
+NAME                                            AGE                             
+---------------------------------------- ----------                             
+박나래                                           27                             
+
+SQL> --이름이 노홍철인 사람의 이름을 홍철로 수정
+SQL> --DML ( update )
+SQL> update member set name='홍철'
+  2  where name='노홍철';
+
+1 row updated.
+
+SQL> select * from member;
+
+NAME                                            AGE BIRTH                       
+---------------------------------------- ---------- --------                    
+홍철                                             30 89/09/01                    
+박나래                                           27 86/07/15                    
+
+SQL> --이름이 박나래인 사람을 삭제
+SQL> delete from member
+  2  where name='박나래';
+
+1 row deleted.
+
+SQL> select *from member;
+
+NAME                                            AGE BIRTH                       
+---------------------------------------- ---------- --------                    
+홍철                                             30 89/09/01                    
+
+SQL> --member테이블을 제거
+SQL> --그전에 컬럼제거 (기존 테이블의 구조변경) alter
+SQL> alter member
+  2  
+SQL> alter table member
+  2  drop column age;
+
+Table altered.
+
+SQL> select * from member;
+
+NAME                                     BIRTH                                  
+---------------------------------------- --------                               
+홍철                                     89/09/01                               
+
+SQL> --테이블 삭제
+SQL> drop table member;
+
+Table dropped.
+
+SQL> spool off

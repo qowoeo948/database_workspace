@@ -1,0 +1,12 @@
+https://drive.google.com/drive/folders/1VTZYeHa65Hjtx-kg-_BZDLDN0FpSkgr-
+https://github.com/zino1187 
+sqlplus sys/1234 as sysdba
+
+cd C:\Program Files\MariaDB 10.3\bin
+ mysql -u root -p
+ 1234
+
+
+spool 'C:\workspacedk\database\4일차.txt'
+
+

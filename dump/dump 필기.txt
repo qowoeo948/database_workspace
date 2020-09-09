@@ -1,0 +1,30 @@
+오라클의 SQLplus 툴에는 대량의 데이터를 덤프(한꺼번에)로
+읽어들일 수 있는 기능이 숨어있다.
+이 기능을 이용하려면, 오라클에서만 사용되는 특별한 명령어 파일을
+사용해야 한다..(컨트롤 파일 확장자가 ctl)
+
+
+csv ->구글 스프레드 씨트로 만든다음 csv로 저장
+ctl ->
+load data
+infile'animal.csv'
+insert into table animal
+fields terminated by ','
+(code,category,name,location)
+
+.ctl로 만들기
+
+두개 파일 만들고
+
+오라클계정에서 animal 테이블 만들고
+cmd
+cd C:\workspacedk\database\dump      ->일단 경로로 들어가기
+dir-> csv파일 있는지 확인
+SQLLDR user0827/user0827 control='animal.ctl' data='animal.csv'
+
+---------------------------------------------------------------
+테이블내용 지울때는
+delete from animal;
+commit;
+
+이런식으로 안에 내용들만 지우기

@@ -1,0 +1,15 @@
+SQL> create table animal(
+  2  code number,
+  3  category varchar(20),
+  4  name varchar(10),
+  5  location varchar(20)
+  6  );
+
+Table created.
+
+SQL> --테이블 만들기만
+SQL> commit;
+
+Commit complete.
+
+SQL> spool off
