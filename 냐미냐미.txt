@@ -1,6 +1,9 @@
 https://drive.google.com/drive/folders/1VTZYeHa65Hjtx-kg-_BZDLDN0FpSkgr-
 https://github.com/zino1187 
+
 sqlplus sys/1234 as sysdba
+
+select table_name from user_tables;
 
 cd C:\Program Files\MariaDB 10.3\bin
  mysql -u root -p
