@@ -1,0 +1,55 @@
+데이버베이스 ddl , dml, dcl 뭐있는지 공부
+
+DDL
+- create alter drop
+
+1) create
+create table dept(
+deptno number 
+,dname varchar2(14)
+,loc varchar2(13)
+,primary key(deptno)
+);
+
+2)alter
+   alter table member
+   drop column ename;
+컬럼을 추가 한다거나 삭제 한다거나, 컬럼의 속성을 변경해 줄수 있습니다.
+
+   alter table ddk
+  rename column 기존컬럼이름 to 새로운 컬럼 이름
+
+  alter table dk
+  add 추가할 컬럼명 데이터유형;
+
+
+3)drop
+drop table member;
+
+
+DML
+- select insert delete updatae
+
+1)select
+
+2)insert
+   insert into dept(deptno,dname,loc) values(값,값,값);
+
+3)delete  
+    delete from member
+    where ename='BLAKE';
+
+4) update
+  update emp2 set job='영업맨'
+  where deptno=30 AND job='SALESMAN';
+
+DCL
+- commit rollback grant revoke
+
+
+
+ddl은 롤백이 안돼 DML만 트랜잭션의 대상이 된다
+
+
+앵그리버드 새
+좌우 뒤집은다음 왼쪽으로 가보게 하기
