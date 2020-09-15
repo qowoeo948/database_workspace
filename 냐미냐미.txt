@@ -12,4 +12,7 @@ cd C:\Program Files\MariaDB 10.3\bin
 
 spool 'C:\workspacedk\database\4일차.txt'
 
+테이블스페이스 용량늘리기
+alter database
+datafile '본인경로/파일명.dbf' resize 10M;
 
