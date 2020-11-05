@@ -1,0 +1,33 @@
+SQL> create tablespace space1104
+  2  datafile 'C:\oraclexe\app\oracle\oradata\XE\space1104.dbf'
+  3  size 10m;
+
+Tablespace created.
+
+SQL> --유저생성
+SQL> create user user1104
+  2  identified by user1104
+  3  default tablespace space1104
+  4  quota unlimited on space1104
+  5  ;
+
+User created.
+
+SQL> --필요한 권한 부여 DCL
+SQL> grant create table, create sequence, create session to user1104;
+
+Grant succeeded.
+
+SQL> --유저로 접속시도하고, 테이블 생성하자!!
+SQL> create table member(
+  2  
+SQL> create table member(
+  2  member_id number primary key,
+  3  name varchar(20),
+  4  age number,
+  5  phone varchar(20)
+  6  );
+
+Table created.
+
+SQL> spool off;

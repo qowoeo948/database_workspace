@@ -1,0 +1,11 @@
+seproject우측
+bulidpath
+configure builpath
+Libraries
+add Libraries
+user Library - next
+오른쪽 새로 user Libraries
+new
+이름 정하기 My lib   - ok
+Add JARs
+lib폴더안에 ojdbc6.jar 넣어둔거 클릭
